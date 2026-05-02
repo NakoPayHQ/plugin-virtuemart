@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="vmpayment" method="upgrade">
+    <name>NakoPay</name>
+    <author>NakoPay</author>
+    <creationDate>2026-04</creationDate>
+    <license>MIT</license>
+    <version>0.1.0</version>
+    <description>Accept Bitcoin in VirtueMart checkout.</description>
+    <files>
+        <filename plugin="nakopay">nakopay.php</filename>
+    </files>
+</extension>
