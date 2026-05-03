@@ -1,0 +1,26 @@
+name: Release plugin-virtuemart
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No internal URLs
+        run: bash ./scripts/check-no-internal-urls.sh ./
+      - name: Build zip
+        run: |
+          cd .
+          zip -r ../nakopay-virtuemart.zip virtuemart -x '*/node_modules/*' '*/vendor/*' '*/.git/*'
+      - name: GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: nakopay-virtuemart.zip
+          generate_release_notes: true
+          name: VirtueMart ${{ github.ref_name }}
