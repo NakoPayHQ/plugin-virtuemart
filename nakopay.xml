@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="vmpayment" method="upgrade">
+    <name>VM Payment - NakoPay</name>
+    <creationDate>2026-05-03</creationDate>
+    <author>NakoPay</author>
+    <authorEmail>support@nakopay.com</authorEmail>
+    <authorUrl>https://nakopay.com</authorUrl>
+    <copyright>Copyright (C) 2025-2026 NakoPay. MIT License.</copyright>
+    <license>MIT</license>
+    <version>1.0.0</version>
+    <description>Accept Bitcoin payments on VirtueMart via NakoPay. Non-custodial, 1% flat fee, direct-to-wallet settlement.</description>
+
+    <files>
+        <filename plugin="nakopay">nakopay.php</filename>
+        <folder>nakopay</folder>
+        <folder>language</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">language/en-GB/en-GB.plg_vmpayment_nakopay.ini</language>
+    </languages>
+
+    <vmconfig>
+        <fields name="params" addfieldpath="/plugins/vmpayment/nakopay/fields">
+            <fieldset name="basic" label="NakoPay Settings">
+                <field name="nakopay_api_key" type="text" default=""
+                       label="API Key"
+                       description="Your NakoPay secret key (sk_test_* or sk_live_*)" />
+                <field name="nakopay_webhook_secret" type="text" default=""
+                       label="Webhook Secret"
+                       description="Used to verify incoming webhook signatures (whsec_*)" />
+                <field name="nakopay_sandbox" type="list" default="1"
+                       label="Sandbox Mode"
+                       description="Enable to test without real funds">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="payment_logos" type="text" default="nakopay"
+                       label="Payment Logo"
+                       description="Logo shown at checkout" />
+                <field name="status_pending" type="vmorderstate" default="P"
+                       label="Pending Status"
+                       description="Order status when invoice is created" />
+                <field name="status_success" type="vmorderstate" default="C"
+                       label="Success Status"
+                       description="Order status when payment is confirmed" />
+            </fieldset>
+        </fields>
+    </vmconfig>
+</extension>
